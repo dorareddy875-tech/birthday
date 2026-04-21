@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Question ❤️</title>
+
+  <!-- مهم for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial;
+      background: linear-gradient(to right,#ff758c,#ff7eb3);
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 6vw; /* responsive text */
+      margin-top: 15vh;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 4vw;
+      margin: 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      min-width: 120px;
+    }
+
+    .yes {
+      background: green;
+      color: white;
+    }
+
+    .no {
+      background: red;
+      color: white;
+    }
+
+    /* Laptop view */
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 40px;
+      }
+      button {
+        font-size: 18px;
+        padding: 15px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Do U WANT surprise? ❤️</h1>
+
+  <button class="yes" onclick="goYes()">Yes 💖</button>
+  <button class="no" onclick="goNo()">No 😢</button>
+
+  <script>
+    function goYes() {
+      window.location.href = "birthday.html";
+    }
+
+    function goNo() {
+      alert("Think again 😜");
+    }
+  </script>
+
+</body>
+</html>
