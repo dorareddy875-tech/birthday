@@ -12,7 +12,7 @@ form.addEventListener("submit", function (e) {
 
   if (username === correctUsername && password === correctPassword) {
     // Redirect to Yes/No page
-    window.location.href = "page1.html";
+    window.location.href = "question.html";
   } else {
     alert("Incorrect Username or Password ❌");
   }
