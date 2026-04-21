@@ -2,8 +2,6 @@
 <html>
 <head>
   <title>Happy Birthday Ammu 🎂</title>
-
-  <!-- IMPORTANT for mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -17,13 +15,8 @@
       overflow-x: hidden;
     }
 
-    h1 {
-      margin-top: 20px;
-      font-size: clamp(20px, 5vw, 36px);
-    }
-
     #name {
-      font-size: clamp(22px, 6vw, 34px);
+      font-size: 28px;
       font-weight: bold;
       animation: glow 2s infinite alternate;
     }
@@ -34,7 +27,6 @@
     }
 
     #typing {
-      font-size: clamp(16px, 4vw, 22px);
       margin-top: 10px;
       border-right: 2px solid white;
       display: inline-block;
@@ -42,33 +34,36 @@
       overflow: hidden;
     }
 
-    #bear {
-      font-size: clamp(40px, 10vw, 60px);
-      margin-top: 10px;
-    }
-
     #photos {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap; /* mobile fix */
+      flex-wrap: wrap;
       gap: 10px;
-      margin: 20px 10px;
+      margin: 20px;
     }
 
     #photos img {
-      width: clamp(100px, 30vw, 140px);
-      height: clamp(100px, 30vw, 140px);
+      width: 120px;
+      height: 120px;
       border-radius: 10px;
       border: 3px solid white;
       object-fit: cover;
     }
 
-    #cakeBox {
+    #cake {
+      font-size: 120px;
       margin-top: 20px;
+      cursor: pointer;
     }
 
-    #cake {
-      font-size: clamp(80px, 20vw, 170px);
+    @keyframes cutCake {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2) rotate(-10deg); }
+      100% { transform: scale(1); }
+    }
+
+    .cut {
+      animation: cutCake 0.6s ease;
     }
 
     .explosion {
@@ -86,31 +81,25 @@
 
 <body>
 
-<h1>
-  Happy Birthday 🎂✨<br>
-  <span id="name">Hema Sri (Ammu) 💖</span>
-</h1>
-
-<div id="bear">🐻💖</div>
+<h1>Happy Birthday 🎂✨<br>
+<span id="name">Hema Sri (Ammu) 💖</span></h1>
 
 <div id="typing"></div>
 
 <div id="photos">
-  <img src="a.jpeg" />
-  <img src="b.jpeg" />
+  <img src="a.jpeg">
+  <img src="b.jpeg">
 </div>
 
-<div id="cakeBox">
-  <div id="cake">🎂</div>
-</div>
+<p>Tap the cake 🎂</p>
 
-<!-- Audio Fix -->
+<div id="cake">🎂</div>
+
 <audio id="music" loop>
   <source src="gaali_vaaluga.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-
 let text = "Main Character Today 👑💖";
 let i = 0;
 
@@ -126,10 +115,10 @@ function type() {
 type();
 
 function explosion() {
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 30; i++) {
     let e = document.createElement("div");
     e.className = "explosion";
-    e.innerHTML = ["💥","✨","💖","🎇"][Math.floor(Math.random()*4)];
+    e.innerHTML = ["🎉","✨","💖","🎊"][Math.floor(Math.random()*4)];
     e.style.left = Math.random()*100 + "vw";
     e.style.top = Math.random()*60 + "vh";
     document.body.appendChild(e);
@@ -137,11 +126,23 @@ function explosion() {
   }
 }
 
-/* MOBILE AUDIO FIX (autoplay restriction) */
-document.body.addEventListener("click", () => {
-  document.getElementById("music").play();
-}, { once: true });
+const cake = document.getElementById("cake");
+const music = document.getElementById("music");
 
+cake.addEventListener("click", () => {
+
+  // 🎶 play song
+  music.play().catch(()=>{});
+
+  // 🎂 animation
+  cake.classList.add("cut");
+
+  setTimeout(() => {
+    cake.innerHTML = "🍰🍰";
+  }, 300);
+
+  explosion();
+});
 </script>
 
 </body>
